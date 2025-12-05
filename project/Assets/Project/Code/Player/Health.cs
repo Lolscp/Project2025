@@ -1,18 +1,22 @@
 using UnityEngine;
+using System;
 
-namespace Project.Code.Player {
+namespace Project.Code.Players {
     [SerializeField]
     public class Health {
         private float CurrentHealth;
         private float MaxHealth;
 
-        public Health(float Health, float MaxHealth) {
-            this.MaxHealth = MaxHealth;
-            this.CurrentHealth = Health;
+        public event Action PlayerDeath;
+
+        public Health(float Health, float MaxHealthValue) {
+            MaxHealth = MaxHealthValue;
+            CurrentHealth = Health;
         }
         public void TakeDamage(float damage) {
             CurrentHealth -= damage;
             if (CurrentHealth < 0) CurrentHealth = 0;
+            PlayerDeath?.Invoke();
         }
         public void Heal(float amount) {
             CurrentHealth += amount;
