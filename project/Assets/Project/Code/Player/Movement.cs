@@ -1,15 +1,20 @@
+using Project.Code.Pattern.FSM;
 using UnityEngine;
-
-namespace Project.Code.Players {
-    [SerializeField]
-    public class Movement {
+namespace Project.Code.Player {
+    public sealed class Movement {
+        private float _speed = 5f;
         private float _Move;
-        private float _Speed;
 
-        private Rigidbody2D Player;
+        private Rigidbody2D _rigidbody;
+        private Fsm State;
 
-        public Movement(float Speed,float Move,Rigidbody2D Rigidbody2D) {
-            _Speed = Speed;
+        public void Update() {
+            State.Update();
+        }
+
+        public Movement(Rigidbody2D rigidbody,float Speed,float Move) {
+            _rigidbody = rigidbody;
+            _speed = Speed;
             _Move = Move;
         }
     }
