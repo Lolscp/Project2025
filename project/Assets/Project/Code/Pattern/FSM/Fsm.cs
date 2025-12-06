@@ -21,5 +21,8 @@ namespace Project.Code.Pattern.FSM {
         public void AddState(FsmState state) {
             _State.Add(state.GetType(), state);
         }
+        public Fsm() {
+            _State = new Dictionary<Type, FsmState>();
+        }
     }
 }
