@@ -12,8 +12,8 @@ namespace Project.Code.Player {
 
         private InputGameplay _inputActions;
 
-        public void FixedUpdate() {
-            _Movement?.Update();
+        public void Update() {
+            
         }
 
         private void Inti() {
@@ -23,6 +23,7 @@ namespace Project.Code.Player {
             _Health = new Health(100f, 250f);
 
         }
+        public void FixedUpdate() => _Movement?.Update();
         private void OnDisable() {
             _inputActions.Disable();
         }
